@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anil Car Garage | Premium cars and service</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #101111;
+            --paper: #f2f0e9;
+            --muted: #777872;
+            --line: #d8d6ce;
+            --acid: #d9f348;
+            --red: #e45039;
+            --white: #fffdf7;
+            --shadow: rgba(16,17,17,0.12);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; color: var(--ink); background: var(--paper); font-family: Manrope, sans-serif; }
+        button, input { font: inherit; }
+        button { cursor: pointer; }
+        .mono { font-family: "DM Mono", monospace; text-transform: uppercase; letter-spacing: .08em; font-size: .7rem; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 rgba(217,243,72,0); }
+            50% { box-shadow: 0 0 18px rgba(217,243,72,0.35); }
+        }
+
+        header { align-items: center; border-bottom: 1px solid rgba(255,255,255,.18); color: var(--white); display: flex; justify-content: space-between; left: 0; padding: 25px 5vw; position: absolute; right: 0; top: 0; z-index: 2; }
+        .brand { align-items: center; display: flex; gap: 11px; font-size: .93rem; font-weight: 800; letter-spacing: -.03em; }
+        .brand-mark { background: var(--acid); height: 12px; transform: skew(-25deg); width: 12px; }
+        nav { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+        nav a { color: var(--white); font-size: .72rem; text-decoration: none; text-transform: uppercase; letter-spacing: .1em; }
+        nav a:hover { color: var(--acid); }
+        .login-link, .signup-link {
+            background: var(--acid);
+            color: var(--ink) !important;
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .login-link:hover, .signup-link:hover { color: var(--ink) !important; opacity: .9; transform: translateY(-1px); }
+
+        .hero { background: linear-gradient(90deg, rgba(10,12,12,.88) 8%, rgba(10,12,12,.34) 58%, rgba(10,12,12,.08)), url('https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=2200&q=88') center/cover; color: var(--white); min-height: 690px; padding: 175px 5vw 80px; position: relative; }
+        .hero-content { max-width: 670px; animation: fadeUp .8s ease both; }
+        .eyebrow { color: var(--acid); margin: 0 0 23px; }
+        h1 { font-size: clamp(4rem, 9vw, 8.7rem); letter-spacing: -.09em; line-height: .82; margin: 0 0 30px; max-width: 780px; }
+        .hero-copy { color: #d9d9d2; font-size: 1.1rem; line-height: 1.6; max-width: 475px; }
+        .hero-bottom { align-items: end; bottom: 38px; display: flex; justify-content: space-between; left: 5vw; position: absolute; right: 5vw; }
+        .scroll-note { color: #b8bab1; }
+        .hero-stat { border-left: 1px solid rgba(255,255,255,.4); padding-left: 20px; }
+        .hero-stat strong { display: block; font-size: 2.2rem; letter-spacing: -.06em; }
+
+        main { margin: 0 auto; max-width: 1440px; padding: 92px 5vw 120px; }
+        .section-top { align-items: end; display: flex; justify-content: space-between; margin-bottom: 38px; }
+        h2 { font-size: clamp(2.2rem, 4vw, 4.5rem); letter-spacing: -.08em; line-height: .9; margin: 0; }
+        .section-top p { color: var(--muted); line-height: 1.5; margin: 0; max-width: 310px; }
+        .toolbar { border-bottom: 1px solid var(--line); border-top: 1px solid var(--line); display: flex; gap: 10px; justify-content: space-between; margin-bottom: 30px; padding: 13px 0; border-radius: 18px; }
+        .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+        .filter { background: transparent; border: 1px solid transparent; color: var(--muted); padding: 9px 13px; border-radius: 999px; transition: all .25s ease; }
+        .filter.active, .filter:hover { border-color: var(--ink); color: var(--ink); background: rgba(16,17,17,.03); }
+        .search { background: transparent; border: 0; border-bottom: 1px solid var(--ink); min-width: 200px; outline: 0; padding: 9px 12px; border-radius: 12px; }
+        .search::placeholder { color: var(--muted); }
+        .grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+        .car-card {
+            background: var(--white); border: 1px solid var(--line); border-radius: 24px; display: flex; flex-direction: column; min-width: 0; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; overflow: hidden; animation: fadeUp .7s ease both; box-shadow: 0 18px 30px rgba(16,17,17,0.04);
+        }
+        .car-card:hover { box-shadow: 8px 8px 0 var(--acid), 0 30px 55px var(--shadow); transform: translateY(-6px); border-color: rgba(16,17,17,0.18); }
+        .car-image { aspect-ratio: 1.45; background: #ddd; overflow: hidden; position: relative; }
+        .car-image img { height: 100%; object-fit: cover; transition: transform .5s ease; width: 100%; }
+        .car-card:hover img { transform: scale(1.05); }
+        .tag { background: var(--acid); left: 14px; padding: 6px 8px; position: absolute; top: 14px; border-radius: 8px; }
+        .card-content { padding: 21px; }
+        .card-content h3 { font-size: 1.45rem; letter-spacing: -.06em; margin: 0 0 6px; }
+        .origin { color: var(--muted); font-size: .78rem; margin: 0 0 20px; }
+        .specs { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, 1fr); padding-top: 15px; }
+        .specs span { color: var(--muted); display: block; font-size: .65rem; margin-bottom: 4px; text-transform: uppercase; }
+        .specs strong { font-size: .9rem; }
+
+        .feature { align-items: stretch; background: var(--ink); color: var(--white); display: grid; grid-template-columns: 1.1fr 1fr; margin: 108px 0; min-height: 460px; border-radius: 32px; overflow: hidden; }
+        .feature-image { background: url('https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1400&q=85') center/cover; min-height: 350px; }
+        .feature-info { padding: 60px 8%; }
+        .feature-info .eyebrow { color: var(--red); }
+        .feature-info h2 { color: var(--white); margin-bottom: 23px; }
+        .feature-info p { color: #b7b9b2; line-height: 1.7; max-width: 440px; }
+        .feature-list { border-top: 1px solid #444743; display: grid; gap: 0 25px; grid-template-columns: 1fr 1fr; margin-top: 35px; max-width: 460px; }
+        .feature-list div { border-bottom: 1px solid #444743; padding: 14px 0; }
+        .feature-list span { color: #8d9089; display: block; font-size: .68rem; margin-bottom: 4px; text-transform: uppercase; }
+
+        .compare { border-top: 1px solid var(--line); padding-top: 35px; }
+        .compare h2 { font-size: 2.8rem; margin-bottom: 28px; }
+        .compare-table { overflow-x: auto; }
+        table { border-collapse: collapse; min-width: 680px; width: 100%; }
+        th, td { border-bottom: 1px solid var(--line); padding: 17px 15px; text-align: left; }
+        th { font-size: .76rem; text-transform: uppercase; }
+        th:first-child, td:first-child { padding-left: 0; width: 27%; }
+        td { font-size: .9rem; }
+        td:first-child { color: var(--muted); }
+        .accent { color: var(--red); font-weight: 800; }
+        footer { background: var(--red); color: var(--ink); display: flex; justify-content: space-between; padding: 28px 5vw; border-radius: 28px 28px 0 0; }
+        footer strong { font-size: 1.1rem; letter-spacing: -.04em; }
+        footer span { font-size: .75rem; }
+        .empty { color: var(--muted); grid-column: 1/-1; padding: 40px 0; }
+        @media (max-width: 800px) {
+            header { padding: 20px 6vw; }
+            nav { gap: 14px; } nav a:nth-child(2) { display: none; }
+            .hero { min-height: 650px; padding: 145px 6vw 80px; }
+            h1 { font-size: clamp(4rem, 19vw, 7rem); }
+            .hero-bottom { left: 6vw; right: 6vw; }
+            main { padding: 68px 6vw 80px; }
+            .section-top, .toolbar { align-items: start; flex-direction: column; }
+            .search { width: 100%; }
+            .grid { grid-template-columns: 1fr; }
+            .feature { grid-template-columns: 1fr; margin: 75px 0; }
+            .feature-image { min-height: 250px; }
+            .feature-info { padding: 42px 8%; }
+            footer { align-items: start; flex-direction: column; gap: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="brand" href="#top"><span class="brand-mark"></span> ANIL CAR GARAGE</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#garage">The garage</a>
+            <a href="#compare">Compare</a>
+            <a href="#about">About</a>
+            <a href="login.html" class="login-link">Login</a>
+            <a href="signup.html">Sign Up</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="top">
+        <div class="hero-content">
+            <p class="eyebrow mono">Your trusted garage / 2025</p>
+            <h1>Anil Car<br>Garage</h1>
+            <p class="hero-copy">Expert care, reliable service, and premium automotive support for every journey.</p>
+        </div>
+        <div class="hero-bottom">
+            <span class="scroll-note mono">Scroll to explore ↓</span>
+            <div class="hero-stat"><span class="mono">Vehicles indexed</span><strong>048</strong></div>
+        </div>
+    </section>
+
+    <main>
+        <section id="garage">
+            <div class="section-top"><h2>Pick a<br>perspective.</h2><p>Start with a marque, a drivetrain, or simply the car you cannot stop thinking about.</p></div>
+            <div class="toolbar">
+                <div class="filters" aria-label="Filter cars by type">
+                    <button class="filter active" data-filter="all">All cars</button>
+                    <button class="filter" data-filter="hybrid">Hybrid</button>
+                    <button class="filter" data-filter="v12">V12</button>
+                    <button class="filter" data-filter="track">Track-focused</button>
+                    <button class="filter" data-filter="suv">SUV</button>
+                    <button class="filter" data-filter="performance">Performance</button>
+                </div>
+                <input class="search" id="search" type="search" placeholder="Search the index..." aria-label="Search the car index">
+            </div>
+            <div class="grid" id="car-grid">
+                <article class="car-card" data-type="v12" data-name="Ferrari 12Cilindri"><div class="car-image"><img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&w=900&q=85" alt="Red Ferrari sports car"><span class="tag mono">01 / Icon</span></div><div class="card-content"><h3>Ferrari 12Cilindri</h3><p class="origin">Maranello, Italy · 2024</p><div class="specs"><div><span>Power</span><strong>830 CV</strong></div><div><span>0–100</span><strong>2.9 sec</strong></div><div><span>Top speed</span><strong>340 km/h</strong></div></div></div></article>
+                <article class="car-card" data-type="hybrid" data-name="McLaren Artura"><div class="car-image"><img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=900&q=85" alt="Orange McLaren sports car"><span class="tag mono">02 / New era</span></div><div class="card-content"><h3>McLaren Artura</h3><p class="origin">Woking, England · 2022</p><div class="specs"><div><span>Power</span><strong>700 PS</strong></div><div><span>0–100</span><strong>3.0 sec</strong></div><div><span>Top speed</span><strong>330 km/h</strong></div></div></div></article>
+                <article class="car-card" data-type="track" data-name="Porsche 911 GT3 RS"><div class="car-image"><img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=900&q=85" alt="Silver Porsche sports car"><span class="tag mono">03 / Aero</span></div><div class="card-content"><h3>Porsche 911 GT3 RS</h3><p class="origin">Stuttgart, Germany · 2023</p><div class="specs"><div><span>Power</span><strong>525 PS</strong></div><div><span>0–100</span><strong>3.2 sec</strong></div><div><span>Downforce</span><strong>860 kg</strong></div></div></div></article>
+                <article class="car-card" data-type="suv" data-name="Lamborghini Urus"><div class="car-image"><img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=900&q=85" alt="Lamborghini Urus luxury SUV"><span class="tag mono">04 / SUV</span></div><div class="card-content"><h3>Lamborghini Urus</h3><p class="origin">Sant'Agata, Italy · 2024</p><div class="specs"><div><span>Power</span><strong>666 CV</strong></div><div><span>0–100</span><strong>3.6 sec</strong></div><div><span>Top speed</span><strong>305 km/h</strong></div></div></div></article>
+                <article class="car-card" data-type="performance" data-name="BMW M5 CS"><div class="car-image"><img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=85" alt="BMW M5 CS performance sedan"><span class="tag mono">05 / Perf.</span></div><div class="card-content"><h3>BMW M5 CS</h3><p class="origin">Munich, Germany · 2023</p><div class="specs"><div><span>Power</span><strong>627 PS</strong></div><div><span>0–100</span><strong>3.4 sec</strong></div><div><span>Top speed</span><strong>250 km/h</strong></div></div></div></article>
+                <article class="car-card" data-type="hybrid" data-name="Mercedes AMG GT 63 S E Performance"><div class="car-image"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85" alt="Mercedes AMG GT coupe"><span class="tag mono">06 / Hybrid</span></div><div class="card-content"><h3>AMG GT 63 S E</h3><p class="origin">Affalterbach, Germany · 2024</p><div class="specs"><div><span>Power</span><strong>831 PS</strong></div><div><span>0–100</span><strong>3.2 sec</strong></div><div><span>Top speed</span><strong>250 km/h</strong></div></div></div></article>
+                <article class="car-card" data-type="suv" data-name="Range Rover Sport SVR"><div class="car-image"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=85" alt="Range Rover SUV"><span class="tag mono">07 / SUV</span></div><div class="card-content"><h3>Range Rover Sport SVR</h3><p class="origin">Solihull, England · 2024</p><div class="specs"><div><span>Power</span><strong>635 PS</strong></div><div><span>0–100</span><strong>3.6 sec</strong></div><div><span>Top speed</span><strong>250 km/h</strong></div></div></div></article>
+                <article class="car-card" data-type="performance" data-name="Audi RS6 Avant"><div class="car-image"><img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=900&q=85" alt="Audi RS6 wagon"><span class="tag mono">08 / Wagon</span></div><div class="card-content"><h3>Audi RS6 Avant</h3><p class="origin">Ingolstadt, Germany · 2024</p><div class="specs"><div><span>Power</span><strong>630 PS</strong></div><div><span>0–100</span><strong>3.6 sec</strong></div><div><span>Top speed</span><strong>250 km/h</strong></div></div></div></article>
+                <article class="car-card" data-type="track" data-name="Porsche Cayman GT4 RS"><div class="car-image"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85" alt="Porsche Cayman GT4 RS"><span class="tag mono">09 / Track</span></div><div class="card-content"><h3>Cayman GT4 RS</h3><p class="origin">Stuttgart, Germany · 2023</p><div class="specs"><div><span>Power</span><strong>493 PS</strong></div><div><span>0–100</span><strong>3.4 sec</strong></div><div><span>Top speed</span><strong>184 mph</strong></div></div></div></article>
+                <article class="car-card" data-type="v12" data-name="Aston Martin DBS Superleggera"><div class="car-image"><img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=900&q=85" alt="Aston Martin DBS"><span class="tag mono">10 / Grand</span></div><div class="card-content"><h3>DBS Superleggera</h3><p class="origin">Gaydon, England · 2023</p><div class="specs"><div><span>Power</span><strong>715 PS</strong></div><div><span>0–100</span><strong>3.2 sec</strong></div><div><span>Top speed</span><strong>211 mph</strong></div></div></div></article>
+                <article class="car-card" data-type="performance" data-name="Mercedes C63 S"><div class="car-image"><img src="https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=900&q=85" alt="Mercedes C63 S"><span class="tag mono">11 / Sedan</span></div><div class="card-content"><h3>C63 S</h3><p class="origin">Affalterbach, Germany · 2023</p><div class="specs"><div><span>Power</span><strong>510 PS</strong></div><div><span>0–100</span><strong>3.4 sec</strong></div><div><span>Top speed</span><strong>250 km/h</strong></div></div></div></article>
+                <article class="car-card" data-type="hybrid" data-name="Ferrari SF90 Stradale"><div class="car-image"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85" alt="Ferrari SF90"><span class="tag mono">12 / Hybrid</span></div><div class="card-content"><h3>SF90 Stradale</h3><p class="origin">Maranello, Italy · 2023</p><div class="specs"><div><span>Power</span><strong>986 PS</strong></div><div><span>0–100</span><strong>2.5 sec</strong></div><div><span>Top speed</span><strong>211 mph</strong></div></div></div></article>
+                <article class="car-card" data-type="track" data-name="Chevrolet Corvette Z06"><div class="car-image"><img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e9f9?auto=format&fit=crop&w=900&q=85" alt="Corvette Z06"><span class="tag mono">13 / Coupe</span></div><div class="card-content"><h3>Corvette Z06</h3><p class="origin">Bowling Green, USA · 2024</p><div class="specs"><div><span>Power</span><strong>670 PS</strong></div><div><span>0–100</span><strong>2.9 sec</strong></div><div><span>Top speed</span><strong>195 mph</strong></div></div></div></article>
+                <article class="car-card" data-type="suv" data-name="Bentley Bentayga Speed"><div class="car-image"><img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=900&q=85" alt="Bentley SUV"><span class="tag mono">14 / Luxury</span></div><div class="card-content"><h3>Bentley Bentayga Speed</h3><p class="origin">Crewe, England · 2024</p><div class="specs"><div><span>Power</span><strong>750 PS</strong></div><div><span>0–100</span><strong>3.6 sec</strong></div><div><span>Top speed</span><strong>290 km/h</strong></div></div></div></article>
+                <article class="car-card" data-type="performance" data-name="Porsche Taycan Turbo S"><div class="car-image"><img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=900&q=85" alt="Porsche Taycan"><span class="tag mono">15 / EV</span></div><div class="card-content"><h3>Taycan Turbo S</h3><p class="origin">Zuffenhausen, Germany · 2024</p><div class="specs"><div><span>Power</span><strong>761 PS</strong></div><div><span>0–100</span><strong>2.7 sec</strong></div><div><span>Top speed</span><strong>260 km/h</strong></div></div></div></article>
+            </div>
+        </section>
+
+        <section class="feature" id="about"><div class="feature-image" role="img" aria-label="Blue supercar on a road"></div><div class="feature-info"><p class="eyebrow mono">Deep dive / 07 min read</p><h2>Why the<br>V12 matters.</h2><p>Before screens, turbos, and electric motors, there was displacement. The V12 is more than a layout: it is a mechanical signature, a perfectly balanced argument for making noise.</p><div class="feature-list"><div><span>Firing order</span>1-7-5-11-3-9-6-12-2-8-4-10</div><div><span>Natural rhythm</span>Perfect primary balance</div><div><span>First road car</span>Packard Twin Six / 1915</div><div><span>Typical redline</span>7,500–9,500 rpm</div></div></div></section>
+
+        <section class="compare" id="compare"><h2>Numbers with<br>context.</h2><div class="compare-table"><table><thead><tr><th>Spec sheet</th><th>12Cilindri</th><th>Artura</th><th>911 GT3 RS</th></tr></thead><tbody><tr><td>Engine</td><td>6.5L V12</td><td>3.0L V6 + E</td><td>4.0L flat-six</td></tr><tr><td>Weight</td><td>1,560 kg</td><td class="accent">1,395 kg</td><td>1,450 kg</td></tr><tr><td>Power / weight</td><td class="accent">532 PS/t</td><td>502 PS/t</td><td>362 PS/t</td></tr><tr><td>Character</td><td>Grand tourer</td><td>Daily weapon</td><td>Road racer</td></tr></tbody></table></div></section>
+    </main>
+    <footer><strong>ANIL CAR GARAGE</strong><span class="mono">Trusted service · Quality care</span></footer>
+
+    <script>
+        const cards = [...document.querySelectorAll('.car-card')];
+        const filters = [...document.querySelectorAll('.filter')];
+        const search = document.querySelector('#search');
+        let activeFilter = 'all';
+        function updateCards() {
+            const term = search.value.toLowerCase();
+            let visible = 0;
+            cards.forEach(card => {
+                const matchesFilter = activeFilter === 'all' || card.dataset.type === activeFilter;
+                const matchesSearch = card.dataset.name.toLowerCase().includes(term);
+                card.hidden = !(matchesFilter && matchesSearch);
+                if (!card.hidden) visible++;
+            });
+            let empty = document.querySelector('.empty');
+            if (!visible && !empty) { empty = document.createElement('p'); empty.className = 'empty'; empty.textContent = 'No cars found in this corner of the index.'; document.querySelector('#car-grid').append(empty); }
+            if (empty && visible) empty.remove();
+        }
+        filters.forEach(filter => filter.addEventListener('click', () => { activeFilter = filter.dataset.filter; filters.forEach(item => item.classList.toggle('active', item === filter)); updateCards(); }));
+        search.addEventListener('input', updateCards);
+    </script>
+</body>
+</html>

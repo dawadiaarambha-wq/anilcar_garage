@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anil Car Garage | Login</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --panel: rgba(15, 15, 15, 0.48);
+      --panel-border: rgba(255, 255, 255, 0.14);
+      --soft-white: rgba(255, 255, 255, 0.8);
+      --muted: rgba(255, 255, 255, 0.68);
+      --gold: #d8a76a;
+      --gold-strong: #f1b464;
+      --white: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.38);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image:
+        linear-gradient(rgba(10, 10, 10, 0.28), rgba(10, 10, 10, 0.55)),
+        url("https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=2400&q=85");
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 24px;
+    }
+
+    .login-shell {
+      width: min(470px, 100%);
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .login-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 34px;
+      padding: 34px 30px 28px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 30px 80px var(--shadow);
+      animation: fadeInUp .8s ease both;
+    }
+
+    .brand {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--gold-strong);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.5rem, 5vw, 3.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--soft-white);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 16px;
+      color: var(--white);
+      padding: 15px 16px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    input:focus {
+      border-color: rgba(241, 180, 100, 0.8);
+      box-shadow: 0 0 0 3px rgba(241, 180, 100, 0.15);
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 10px 0 22px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .check {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .check input {
+      width: auto;
+      margin: 0;
+      accent-color: var(--gold-strong);
+    }
+
+    .forgot {
+      color: var(--gold-strong);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .btn {
+      width: 100%;
+      border: none;
+      border-radius: 18px;
+      padding: 16px 18px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #171410;
+      background: linear-gradient(135deg, var(--gold-strong), var(--gold));
+      cursor: pointer;
+      box-shadow: 0 20px 35px rgba(216, 167, 106, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 38px rgba(216, 167, 106, 0.42);
+    }
+
+    .signup-btn {
+      display: block;
+      width: 100%;
+      margin-top: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 16px;
+      padding: 15px 18px;
+      font-size: 1rem;
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.04);
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .signup-btn:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .signup {
+      margin-top: 22px;
+      text-align: center;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .signup a {
+      color: var(--gold-strong);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--soft-white);
+      text-decoration: none;
+      font-size: 0.86rem;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-shell">
+    <div class="login-card">
+      <a href="index.html" class="brand">Anil Car Garage</a>
+      <h1>Welcome back</h1>
+      <p class="subtitle">Access your premium garage account and manage every drive with confidence.</p>
+
+      <form>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="Enter your password" />
+        </div>
+
+        <div class="row">
+          <label class="check">
+            <input type="checkbox" />
+            Remember me
+          </label>
+          <a href="#" class="forgot">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn">Log In</button>
+
+        <a href="signup.html" class="signup-btn">Sign Up</a>
+      </form>
+
+      <div class="signup">
+        Don’t have an account? <a href="signup.html">Create one</a>
+      </div>
+
+      <a href="index.html" class="back-home">← Back to home</a>
+      <a href="signup.html" class="back-home" style="margin-left: 12px;">Sign up →</a>
+    </div>
+  </div>
+</body>
+</html>
